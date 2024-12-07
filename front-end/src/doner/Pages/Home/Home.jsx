@@ -7,7 +7,6 @@ import BodyContent from './bodycontent'
 const Home = () => {
   return (
     <>
-    <NavBar/>
     <BodyContent/>
     </>
   )

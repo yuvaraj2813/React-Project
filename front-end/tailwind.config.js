@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        indira: ['Indira Serif', 'serif'],  // Define 'indira' as the custom font
+      },
+    },
   },
   plugins: [],
 }
