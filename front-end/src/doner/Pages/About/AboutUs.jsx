@@ -2,12 +2,12 @@ import React from 'react';
 import image from '../../../images/image.png';
 const AboutUs = () => {
     return (
-        <div className='mt-20'>
-            <div className='grid grid-cols-2 '>
-                <div>
-                    <img src={image} alt="Loading.." className='w-full h-auto max-w-[350px] mx-auto object-contain rounded-[20px]' />
+        <div className=''>
+            <div className='grid grid-cols-2 items-center'>
+                <div className='justify-self-center '>
+                    <img src={image} alt="Loading.." className='w-[500px] h-[500px] m mt-5 object-contain rounded-[10px]' />
                 </div>
-                <div>
+                <div className=''>
                 <h3 className='text-4xl font-bold text-[#0a2540]'>What We Do</h3>
                 <p className='m-3 text-[#384a5b] text-left '>
                     We provide a seamless platform for donors—whether individuals, restaurants, or businesses—to share surplus food with receivers, such as local shelters, food banks, and individuals in need. By making food donations easy and accessible, we reduce food waste while ensuring that no one goes without.

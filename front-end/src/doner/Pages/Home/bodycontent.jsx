@@ -65,39 +65,39 @@ const BodyContent = () => {
       <div className="flex justify-center items-center overflow-x-auto space-x-6 py-5">
 
 
-<div className="relative overflow-x-auto w-full px-6 py-4">
-  <div className="flex transition-all duration-300 scroll-smooth">
-    <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
-      <p className="text-justify">"When I was struggling to put food on the table, [Your Organization's Name] was there for me. The meals I received helped me and my children during our toughest times. Thank you to everyone who donates—you’ve changed our lives."</p>
-      <h3 className="text-xl font-semibold mb-2">— Maria R., Food Recipient</h3>
-    </div>
+        <div className="relative overflow-x-auto w-full px-6 py-4">
+          <div className="flex transition-all duration-300 scroll-smooth">
+            <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
+              <p className="text-justify">"When I was struggling to put food on the table, [Your Organization's Name] was there for me. The meals I received helped me and my children during our toughest times. Thank you to everyone who donates—you’ve changed our lives."</p>
+              <h3 className="text-xl font-semibold mb-2">— Maria R., Food Recipient</h3>
+            </div>
 
-    <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
-      <p className="text-justify">"I never expected to find such kindness. The food donations not only filled my stomach but gave me hope. Knowing that people care enough to share what they have means everything to me."</p>
-      <h3 className="text-xl font-semibold mb-2">— John T., Shelter Resident</h3>
-    </div>
+            <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
+              <p className="text-justify">"I never expected to find such kindness. The food donations not only filled my stomach but gave me hope. Knowing that people care enough to share what they have means everything to me."</p>
+              <h3 className="text-xl font-semibold mb-2">— John T., Shelter Resident</h3>
+            </div>
 
-    <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
-      <p className="text-justify">"These donations mean more than just meals. They bring dignity, relief, and the feeling that someone is looking out for you. Thank you for helping me get through my hardest days."</p>
-      <h3 className="text-xl font-semibold mb-2">— Samantha L., Single Mother</h3>
-    </div>
+            <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
+              <p className="text-justify">"These donations mean more than just meals. They bring dignity, relief, and the feeling that someone is looking out for you. Thank you for helping me get through my hardest days."</p>
+              <h3 className="text-xl font-semibold mb-2">— Samantha L., Single Mother</h3>
+            </div>
 
-    <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
-      <p className="text-justify">"When I was struggling to put food on the table, [Your Organization's Name] was there for me. The meals I received helped me and my children during our toughest times. Thank you to everyone who donates—you’ve changed our lives."</p>
-      <h3 className="text-xl font-semibold mb-2">— Maria R., Food Recipient</h3>
-    </div>
+            <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
+              <p className="text-justify">"When I was struggling to put food on the table, [Your Organization's Name] was there for me. The meals I received helped me and my children during our toughest times. Thank you to everyone who donates—you’ve changed our lives."</p>
+              <h3 className="text-xl font-semibold mb-2">— Maria R., Food Recipient</h3>
+            </div>
 
-    <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
-      <p className="text-justify">"I never expected to find such kindness. The food donations not only filled my stomach but gave me hope. Knowing that people care enough to share what they have means everything to me."</p>
-      <h3 className="text-xl font-semibold mb-2">— John T., Shelter Resident</h3>
-    </div>
+            <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
+              <p className="text-justify">"I never expected to find such kindness. The food donations not only filled my stomach but gave me hope. Knowing that people care enough to share what they have means everything to me."</p>
+              <h3 className="text-xl font-semibold mb-2">— John T., Shelter Resident</h3>
+            </div>
 
-    <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
-      <p className="text-justify">"These donations mean more than just meals. They bring dignity, relief, and the feeling that someone is looking out for you. Thank you for helping me get through my hardest days."</p>
-      <h3 className="text-xl font-semibold mb-2">— Samantha L., Single Mother</h3>
-    </div>
-  </div>
-</div>
+            <div className="w-[500px] h-[200px] p-5 rounded-[20px] border border-blue-500 shadow-2xl shadow-grey-950 flex-shrink-0">
+              <p className="text-justify">"These donations mean more than just meals. They bring dignity, relief, and the feeling that someone is looking out for you. Thank you for helping me get through my hardest days."</p>
+              <h3 className="text-xl font-semibold mb-2">— Samantha L., Single Mother</h3>
+            </div>
+          </div>
+        </div>
 
 
 
