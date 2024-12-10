@@ -1,5 +1,4 @@
 
-
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
@@ -70,7 +69,7 @@ const NavBar = () => {
           </svg>
         </button>
 
-        <div
+        {/* <div
           className={`lg:flex items-center space-x-6 ${
             isMenuOpen ? "block" : "hidden"
           } w-full lg:w-auto absolute lg:static top-14 left-0 bg-white lg:bg-transparent lg:py-0 py-4 px-6 shadow-md lg:shadow-none`}
@@ -94,6 +93,9 @@ const NavBar = () => {
           <Link to="/aboutus" className="block lg:inline text-gray-600 hover:text-blue-600 py-2">
             About Us
           </Link>
+          <Link to="/contactus" className="block lg:inline text-gray-600 hover:text-blue-600 py-2">
+            Contact Us
+          </Link>
 
           {user ? (
             <button
@@ -110,7 +112,76 @@ const NavBar = () => {
               SignIn
             </button>
           )}
+        </div> */}
+
+
+
+
+        <div
+          className={`lg:flex items-center space-x-6 ${isMenuOpen ? "block" : "hidden"
+            } w-full lg:w-auto absolute lg:static top-14 left-0 bg-white lg:bg-transparent lg:py-0 py-4 px-6 shadow-md lg:shadow-none`}
+        >
+          {/* For mobile view, use a flex-column layout */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-6 space-y-4 lg:space-y-0">
+            <Link
+              to="/"
+              className="block text-gray-600 hover:text-blue-600 py-2 lg:py-0 text-left"
+            >
+              Home
+            </Link>
+
+            {role === "donor" && (
+              <Link
+                to="/donate"
+                className="block text-gray-600 hover:text-blue-600 py-2 lg:py-0 text-left"
+              >
+                Donate
+              </Link>
+            )}
+
+            {role === "receiver" && (
+              <Link
+                to="/receivefood"
+                className="block text-gray-600 hover:text-blue-600 py-2 lg:py-0 text-left"
+              >
+                Receive Food
+              </Link>
+            )}
+
+            <Link
+              to="/aboutus"
+              className="block text-gray-600 hover:text-blue-600 py-2 lg:py-0 text-left"
+            >
+              About Us
+            </Link>
+            <Link
+              to="/contactus"
+              className="block text-gray-600 hover:text-blue-600 py-2 lg:py-0 text-left"
+            >
+              Contact Us
+            </Link>
+
+            {user ? (
+              <button
+                className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300"
+                onClick={handleLogoutClick}
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300"
+                onClick={handleSignInClick}
+              >
+                SignIn
+              </button>
+            )}
+
+
+          </div>
         </div>
+
+
       </div>
     </nav>
   );

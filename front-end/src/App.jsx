@@ -9,6 +9,7 @@ import SignIn from "./Auth/Signin";
 import AboutUs from "./doner/Pages/About/AboutUs";
 import Donate from "./doner/Pages/donate/donate";
 import ReceiveFood from "./doner/Pages/Receiver/ReceiveFood";
+import ContactUs from "./doner/Pages/About/ContactUs";
 
 
 const App = () => {
@@ -24,8 +25,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
-
-        <Route path="/donate" element={user ? <Donate /> : <SignIn />} />
+        <Route path="/contactus" element={<ContactUs/>}/>
+        <Route path="/donate" element={<Donate />} />
         <Route path="/receivefood" element={<ReceiveFood />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<Signup />} />

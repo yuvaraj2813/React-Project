@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import AccountDetails from "../AccountDetails"; // Import the AccountDetails component
 import DonateForm from "./DonateForm";
 import CurrentDonations from "./currentDonations";
+import PreviousDonations from "./previousDonations";
 
 const Donate = () => {
   const [activeView, setActiveView] = useState("currentDonations"); // State to track active view
@@ -19,7 +20,7 @@ const Donate = () => {
       case "currentDonations":
         return <CurrentDonations />;
       case "previousDonations":
-        return <div>Previous Donations Component</div>; // Replace with actual component
+        return <PreviousDonations/>; // Replace with actual component
       default:
         return <CurrentDonations />;
     }

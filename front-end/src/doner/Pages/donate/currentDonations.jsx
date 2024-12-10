@@ -126,9 +126,9 @@ const CurrentDonations = () => {
                 {/* If the donation is accepted and not completed, show receiver details and the Done button */}
                 {donation.accepted && donation.status !== "done" && (
                   <div>
-                   
 
-<button
+
+                    <button
                       onClick={() => handleDone(donation.id)}
                       className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mt-2"
                     >
