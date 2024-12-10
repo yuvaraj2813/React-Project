@@ -38,17 +38,17 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        console.log(`User signed in: ${firebaseUser.uid}`); // Log when user signs in
+        // console.log(`User signed in: ${firebaseUser.uid}`); // Log when user signs in
         const userRole = await getUserRole(firebaseUser.uid);
         setUser(firebaseUser);
         setRole(userRole);
       } else {
-        console.log("No user is signed in."); // Log when no user is signed in
+        // console.log("No user is signed in."); // Log when no user is signed in
         setUser(null);
         setRole(null);
       }
       setLoading(false); // Log that loading is complete
-      console.log("Loading state set to false.");
+      // console.log("Loading state set to false.");
     });
 
     return () => unsubscribe();

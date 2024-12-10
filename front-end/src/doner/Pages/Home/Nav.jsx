@@ -9,18 +9,18 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   // Log states for debugging
-  console.log("NavBar States:");
-  console.log("User:", user);
-  console.log("Role:", role);
-  console.log("Loading:", loading);
+  // console.log("NavBar States:");
+  // console.log("User:", user);
+  // console.log("Role:", role);
+  // console.log("Loading:", loading);
 
   const handleSignInClick = () => {
-    console.log("Navigating to sign-in page.");
+    // console.log("Navigating to sign-in page.");
     navigate("/signin");
   };
 
   const handleLogoutClick = () => {
-    console.log("User logging out.");
+    // console.log("User logging out.");
     logout();
     navigate("/");
   };
@@ -68,54 +68,6 @@ const NavBar = () => {
             ></path>
           </svg>
         </button>
-
-        {/* <div
-          className={`lg:flex items-center space-x-6 ${
-            isMenuOpen ? "block" : "hidden"
-          } w-full lg:w-auto absolute lg:static top-14 left-0 bg-white lg:bg-transparent lg:py-0 py-4 px-6 shadow-md lg:shadow-none`}
-        >
-          <Link to="/" className="block lg:inline text-gray-600 hover:text-blue-600 py-2">
-            Home
-          </Link>
-
-          {role === "donor" && (
-            <Link to="/donate" className="block lg:inline text-gray-600 hover:text-blue-600 py-2">
-              Donate
-            </Link>
-          )}
-
-          {role === "receiver" && (
-            <Link to="/receivefood" className="block lg:inline text-gray-600 hover:text-blue-600 py-2">
-              Receive Food
-            </Link>
-          )}
-
-          <Link to="/aboutus" className="block lg:inline text-gray-600 hover:text-blue-600 py-2">
-            About Us
-          </Link>
-          <Link to="/contactus" className="block lg:inline text-gray-600 hover:text-blue-600 py-2">
-            Contact Us
-          </Link>
-
-          {user ? (
-            <button
-              className="block lg:inline bg-blue-500 text-white px-4 py-2 rounded-[20px] hover:bg-blue-600 mt-2 lg:mt-0"
-              onClick={handleLogoutClick}
-            >
-              Logout
-            </button>
-          ) : (
-            <button
-              className="block lg:inline bg-blue-500 text-white px-4 py-2 rounded-[20px] hover:bg-blue-600 mt-2 lg:mt-0"
-              onClick={handleSignInClick}
-            >
-              SignIn
-            </button>
-          )}
-        </div> */}
-
-
-
 
         <div
           className={`lg:flex items-center space-x-6 ${isMenuOpen ? "block" : "hidden"
