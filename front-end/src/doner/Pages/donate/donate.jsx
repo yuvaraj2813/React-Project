@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import AccountDetails from "../AccountDetails"; // Import the AccountDetails component
 import DonateForm from "./DonateForm";
@@ -25,9 +26,9 @@ const Donate = () => {
   };
 
   return (
-    <div className="flex h-screen mt-10 py-5">
+    <div className="pt-16 h-screen flex flex-col lg:flex-row"> {/* Added pt-16 for Navbar space */}
       {/* Navigation Rail */}
-      <div className="w-[200px] bg-gray-100 border-r border-gray-300 shadow-md flex flex-col py-4">
+      <div className="lg:w-[200px] bg-gray-100 border-b lg:border-r border-gray-300 shadow-md flex flex-col py-4 lg:h-full lg:sticky lg:top-0 lg:flex-none">
         <button
           onClick={() => setActiveView("accountDetails")}
           className="px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-md"
@@ -59,7 +60,9 @@ const Donate = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-6 bg-white shadow-md">{renderContent()}</div>
+      <div className="flex-1 p-6 bg-white shadow-md overflow-y-auto">
+        {renderContent()}
+      </div>
     </div>
   );
 };
