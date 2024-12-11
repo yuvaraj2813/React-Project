@@ -112,7 +112,7 @@ const AboutUs = () => {
               <div className="text-center md:text-left md:w-[500px]">
                 <h2 className="text-2xl font-semibold mb-4">Yuvaraj T</h2>
                 <p className="mb-4 text-[#384a5b]">
-                  Hello, I am Yuvaraj, currently pursuing my studies at M.Kumarasamy College of Engineering. I am the developer of this Food Donation App, built using React and Firebase technologies.
+                  Hello, I am Yuvaraj, currently pursuing my studies at M.Kumarasamy College of Engineering. I am the developer of this FoodingHands, built using React and Firebase technologies.
                   <br />
                   I created this platform with a vision to help reduce food wastage and provide assistance to those in need. By connecting food donors with receivers, this platform aims to make a positive impact on society. It's my small step towards solving the hunger problem, using technology to bring people together for a good cause.
                 </p>
