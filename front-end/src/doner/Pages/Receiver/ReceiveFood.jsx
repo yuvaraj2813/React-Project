@@ -44,7 +44,7 @@ const ReceiveFood = () => {
           onClick={() => setCurrentPage("received")}
           className="px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-md"
         >
-          Received
+          Accepted Food
         </button>
         <hr className="my-2" />
       </div>

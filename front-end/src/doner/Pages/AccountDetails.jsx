@@ -5,21 +5,23 @@ import { db } from "../../Firebase/firebaseconfig"; // Adjust the path to your F
 import Swal from "sweetalert2";
 
 const UserDetails = () => {
-  const { user, role } = useContext(UserContext); // Get the user and role from context
+  const { user, role } = useContext(UserContext);
   const [details, setDetails] = useState({
     name: "",
     locality: "",
     district: "",
     state: "",
     phone: "",
-    userId: "", // Add userId to the details state
+    userId: "",
   });
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true); // Start in edit mode if no data exists
+  const [loading, setLoading] = useState(true);
 
   // Fetch user details when the component loads
   useEffect(() => {
     if (user && role) {
       const fetchDetails = async () => {
+        setLoading(true);
         try {
           const collectionName = role === "donor" ? "donor_details" : "receiver_details";
           const docRef = doc(db, collectionName, user.uid);
@@ -27,12 +29,15 @@ const UserDetails = () => {
 
           if (docSnap.exists()) {
             setDetails(docSnap.data());
+            setIsEditing(false); // Disable editing if data exists
           } else {
-            // Set initial userId when no details exist in the database
             setDetails((prevDetails) => ({ ...prevDetails, userId: user.uid }));
           }
         } catch (error) {
           console.error("Error fetching user details:", error);
+          Swal.fire("Error", "Failed to load user details. Please try again.", "error");
+        } finally {
+          setLoading(false);
         }
       };
 
@@ -48,7 +53,7 @@ const UserDetails = () => {
     });
   };
 
-  // Save updated details to Firestore
+  // Save details to Firestore
   const handleSave = async () => {
     if (!details.name || !details.locality || !details.district || !details.state || !details.phone) {
       Swal.fire("Error", "Please fill in all the fields.", "error");
@@ -63,92 +68,54 @@ const UserDetails = () => {
     try {
       const collectionName = role === "donor" ? "donor_details" : "receiver_details";
       await setDoc(doc(db, collectionName, user.uid), {
-        ...details, // Spread details to include all fields
-        userId: user.uid, // Explicitly include the user ID
+        ...details,
+        userId: user.uid,
       });
 
       Swal.fire("Success", "Details saved successfully!", "success");
-      setIsEditing(false); // Switch back to view mode
+      setIsEditing(false); // Switch back to view mode after saving
     } catch (error) {
       console.error("Error saving user details:", error);
-      Swal.fire("Error", "Failed to save details. Try again.", "error");
+      Swal.fire("Error", "Failed to save details. Please try again.", "error");
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6 mt-8">
       <h2 className="text-2xl font-bold mb-4">Your Details</h2>
       <form>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={details.name}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border"
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="locality" className="block text-gray-700">
-            Locality
-          </label>
-          <input
-            type="text"
-            id="locality"
-            name="locality"
-            value={details.locality}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border"
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="district" className="block text-gray-700">
-            District
-          </label>
-          <input
-            type="text"
-            id="district"
-            name="district"
-            value={details.district}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border"
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="state" className="block text-gray-700">
-            State
-          </label>
-          <input
-            type="text"
-            id="state"
-            name="state"
-            value={details.state}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border"
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="phone" className="block text-gray-700">
-            Phone Number
-          </label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={details.phone}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border"
-            disabled={!isEditing}
-          />
-        </div>
+        {[
+          { label: "Name", name: "name", type: "text" },
+          { label: "Locality", name: "locality", type: "text" },
+          { label: "District", name: "district", type: "text" },
+          { label: "State", name: "state", type: "text" },
+          { label: "Phone Number", name: "phone", type: "text" },
+        ].map((field) => (
+          <div className="mb-4" key={field.name}>
+            <label htmlFor={field.name} className="block text-gray-700">
+              {field.label}
+            </label>
+            <input
+              type={field.type}
+              id={field.name}
+              name={field.name}
+              value={details[field.name]}
+              onChange={handleChange}
+              className={`w-full px-3 py-2 border ${
+                !isEditing ? "bg-gray-100 cursor-not-allowed" : ""
+              }`}
+              disabled={!isEditing}
+            />
+          </div>
+        ))}
         {isEditing ? (
           <button
             type="button"
