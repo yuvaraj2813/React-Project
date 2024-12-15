@@ -74,7 +74,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import AccountDetails from "../AccountDetails"; // Import the AccountDetails component
 import DonateForm from "./DonateForm";
-import CurrentDonations from "./CurrentDonations";
+import CurrentDonations from "./currentDonations";
 import PreviousDonations from "./previousDonations";
 import { UserContext } from "../UserContext";
 import { db } from "../../../Firebase/firebaseconfig"; // Firebase config
