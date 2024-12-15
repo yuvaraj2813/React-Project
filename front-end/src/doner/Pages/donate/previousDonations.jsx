@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
 import { db } from "../../../Firebase/firebaseconfig";
-import { doc, query, where, collection, onSnapshot } from "firebase/firestore";
+import { doc, query, where, collection, onSnapshot,getDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 
 const PreviousDonations = () => {
