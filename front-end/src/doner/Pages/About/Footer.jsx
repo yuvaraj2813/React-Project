@@ -75,9 +75,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-800 text-white py-12 mt-16">
-            <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-                {/* Company Info */}
+        <footer className="bg-gray-800 text-white py-2 mt-5">
+            {/* <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                
                 <div className="text-center md:text-left md:w-1/2 px-6 py-4">
                     <h3 className="text-2xl font-semibold mb-4">Food Donation App</h3>
                     <p className="text-lg mt-2 max-w-md mx-auto md:mx-0">
@@ -86,7 +86,7 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* Quick Links */}
+               
                 <div className="flex flex-col md:flex-row md:w-1/2 md:space-x-8 text-lg text-center md:text-right px-6 py-4">
                     <Link to="/aboutus" className="hover:text-blue-400 mb-2 md:mb-0">
                         About Us
@@ -101,7 +101,7 @@ const Footer = () => {
                         Terms of Service
                     </a>
                 </div>
-            </div>
+            </div> */}
 
             {/* Legal and Copyright */}
             <div className="text-center  text-lg text-gray-400 px-6 py-4">

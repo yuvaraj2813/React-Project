@@ -24,11 +24,18 @@ const BodyContent = () => {
       </div>
 
       {/* Info Section */}
-      <div className="m-4 sm:mx-10 sm:p-10 mt-3 bg-[#B8D6D7] rounded-lg border-2 border-blue-500">
+      {/* <div className="m-4 sm:mx-10 sm:p-10 mt-3 bg-[#B8D6D7] rounded-lg border-2 border-blue-500">
         <p className="text-justify text-[#384a5b]">
           Food donation is a simple yet powerful way to combat hunger and reduce food waste. By donating surplus food, you are not only helping to feed those in need but also contributing to a more sustainable and compassionate society. Whether it's cooked meals, packaged food, or fresh ingredients, every donation makes a significant difference. Donating food helps ensure that it reaches people who are struggling with food insecurity, while also preventing good food from being wasted. With just a few clicks, you can share your excess food with others, making a positive impact in your community and beyond.
         </p>
-      </div>
+      </div> */}
+
+<div className="m-4 sm:mx-10 sm:p-10 p-4 mt-3 bg-[#B8D6D7] rounded-lg border-2 border-blue-500">
+  <p className="text-justify text-[#384a5b]">
+    Food donation is a simple yet powerful way to combat hunger and reduce food waste. By donating surplus food, you are not only helping to feed those in need but also contributing to a more sustainable and compassionate society. Whether it's cooked meals, packaged food, or fresh ingredients, every donation makes a significant difference. Donating food helps ensure that it reaches people who are struggling with food insecurity, while also preventing good food from being wasted. With just a few clicks, you can share your excess food with others, making a positive impact in your community and beyond.
+  </p>
+</div>
+
 
       {/* Why Donate Section */}
       <div className="mt-10 grid gap-10 md:grid-cols-2 items-center">
