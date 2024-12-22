@@ -77,9 +77,7 @@ const Received = () => {
               <p>
                 <strong>Quantity:</strong> {donation.quantity}
               </p>
-              <p>
-                <strong>Expiration (Hours):</strong> {donation.expireHours}
-              </p>
+             
               <p>
                 <strong>Pickup Place:</strong> {donation.pickupPlace}
               </p>
@@ -90,7 +88,7 @@ const Received = () => {
                 <strong>Locality:</strong> {donation.locality}
               </p>
               <p>
-                <strong>Phone Number:</strong> {donation.phoneNumber}
+                <strong>Phone Number:</strong> {donation.phoneNo}
               </p>
 
               {/* "Done" Button */}
@@ -109,3 +107,7 @@ const Received = () => {
 };
 
 export default Received;
+
+
+
+

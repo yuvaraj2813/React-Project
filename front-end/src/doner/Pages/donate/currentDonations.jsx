@@ -1,3 +1,5 @@
+
+
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
 import { db } from "../../../Firebase/firebaseconfig";
@@ -103,6 +105,55 @@ const CurrentDonations = () => {
     });
   }, [donations, receiverDetails]);
 
+  // Updated function to calculate the expiration timestamp and handle invalid `expireTime`
+  const calculateExpireTimestamp = (timestamp, expireTime) => {
+    if (!expireTime || !expireTime.includes(":")) {
+      console.warn("Invalid expireTime format", expireTime);
+      return new Date(); // Return the current date if expireTime is invalid
+    }
+
+    const [hours, minutes, seconds] = expireTime.split(":").map((part) => parseInt(part, 10));
+
+    const expireDate = timestamp ? timestamp.toDate() : new Date();
+
+    expireDate.setHours(expireDate.getHours() + hours);
+    expireDate.setMinutes(expireDate.getMinutes() + minutes);
+    expireDate.setSeconds(expireDate.getSeconds() + seconds);
+
+    return expireDate;
+  };
+
+  // Function to format remaining time as HH:MM:SS
+  const formatTimeRemaining = (expireTimestamp) => {
+    if (!expireTimestamp) return "00:00:00"; // If expireTimestamp is not defined
+
+    const now = new Date();
+    const remainingTime = expireTimestamp - now;
+
+    if (remainingTime <= 0) return "Expired"; // Expired
+
+    // Calculate the remaining time
+    const hours = String(Math.floor(remainingTime / (1000 * 60 * 60))).padStart(2, "0");
+    const minutes = String(Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+    const seconds = String(Math.floor((remainingTime % (1000 * 60)) / 1000)).padStart(2, "0");
+
+    return `${hours}:${minutes}:${seconds}`;
+  };
+
+  // Updating time every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDonations((prevDonations) => 
+        prevDonations.map((donation) => ({
+          ...donation,
+          expireTimestamp: calculateExpireTimestamp(donation.timestamp, donation.expireTime),
+        }))
+      );
+    }, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [donations]);
+
   return (
     <div>
       <h1 className="text-3xl font-bold">Current Donations</h1>
@@ -114,52 +165,55 @@ const CurrentDonations = () => {
         <p>No current donations matching the criteria.</p>
       ) : (
         <ul>
-          {donations.map((donation) => (
-            <li key={donation.id} className="mb-4 p-4 border rounded shadow flex flex-col md:flex-row">
-              <div className="flex-1">
-                <p><strong>Food Type:</strong> {donation.foodType}</p>
-                <p><strong>Quantity:</strong> {donation.quantity}</p>
-                <p><strong>Pickup Place:</strong> {donation.pickupPlace}</p>
-                <p><strong>District:</strong> {donation.district}</p>
-                <p><strong>Status:</strong> {donation.accepted ? (donation.status === "done" ? "Completed" : "Accepted by receiver (not done)") : "Waiting for receiver"}</p>
+          {donations.map((donation) => {
+            const expireTimestamp = calculateExpireTimestamp(donation.timestamp, donation.expireTime);
 
-                {/* If the donation is accepted and not completed, show receiver details and the Done button */}
-                {donation.accepted && donation.status !== "done" && (
-                  <div>
+            return (
+              <li key={donation.id} className="mb-4 p-4 border rounded shadow flex flex-col md:flex-row">
+                <div className="flex-1">
+                  <p><strong>Food Type:</strong> {donation.foodType}</p>
+                  <p><strong>Quantity:</strong> {donation.quantity}</p>
+                  <p><strong>Pickup Place:</strong> {donation.pickupPlace}</p>
+                  <p><strong>District:</strong> {donation.district}</p>
+                  <p><strong>Expiration Time:</strong> {formatTimeRemaining(expireTimestamp)}</p>
+                  <p><strong>Status:</strong> {donation.accepted ? (donation.status === "done" ? "Completed" : "Accepted by receiver (not done)") : "Waiting for receiver"}</p>
 
+                  {/* If the donation is accepted and not completed, show receiver details and the Done button */}
+                  {donation.accepted && donation.status !== "done" && (
+                    <div>
+                      <button
+                        onClick={() => handleDone(donation.id)}
+                        className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mt-2"
+                      >
+                        Mark as Done
+                      </button>
+                    </div>
+                  )}
 
-                    <button
-                      onClick={() => handleDone(donation.id)}
-                      className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mt-2"
-                    >
-                      Mark as Done
-                    </button>
-                  </div>
-                )}
+                  <button
+                    onClick={() => handleDelete(donation.id)}
+                    className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 mt-2 ml-2"
+                  >
+                    Delete
+                  </button>
+                </div>
 
-                <button
-                  onClick={() => handleDelete(donation.id)}
-                  className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 mt-2 ml-2"
-                >
-                  Delete
-                </button>
-              </div>
-
-              {/* Right side section for receiver details */}
-              <div className="md:ml-6 mt-4 md:mt-0 md:w-1/3 bg-gray-50 p-4 rounded shadow-md">
-                {donation.accepted && donation.status !== "done" && receiverDetails[donation.receiverId] && (
-                  <>
-                    <h3 className="font-semibold">Receiver Details</h3>
-                    <p><strong>Name:</strong> {receiverDetails[donation.receiverId]?.name}</p>
-                    <p><strong>Phone:</strong> {receiverDetails[donation.receiverId]?.phone}</p>
-                    <p><strong>Locality:</strong> {receiverDetails[donation.receiverId]?.locality}</p>
-                    <p><strong>District:</strong> {receiverDetails[donation.receiverId]?.district}</p>
-                    <p><strong>State:</strong> {receiverDetails[donation.receiverId]?.state}</p>
-                  </>
-                )}
-              </div>
-            </li>
-          ))}
+                {/* Right side section for receiver details */}
+                <div className="md:ml-6 mt-4 md:mt-0 md:w-1/3 bg-gray-50 p-4 rounded shadow-md">
+                  {donation.accepted && donation.status !== "done" && receiverDetails[donation.receiverId] && (
+                    <>
+                      <h3 className="font-semibold">Receiver Details</h3>
+                      <p><strong>Name:</strong> {receiverDetails[donation.receiverId]?.name}</p>
+                      <p><strong>Phone:</strong> {receiverDetails[donation.receiverId]?.phone}</p>
+                      <p><strong>Locality:</strong> {receiverDetails[donation.receiverId]?.locality}</p>
+                      <p><strong>District:</strong> {receiverDetails[donation.receiverId]?.district}</p>
+                      <p><strong>State:</strong> {receiverDetails[donation.receiverId]?.state}</p>
+                    </>
+                  )}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

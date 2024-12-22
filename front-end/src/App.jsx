@@ -10,6 +10,7 @@ import AboutUs from "./doner/Pages/About/AboutUs";
 import Donate from "./doner/Pages/donate/donate";
 import ReceiveFood from "./doner/Pages/Receiver/ReceiveFood";
 import ContactUs from "./doner/Pages/About/ContactUs";
+import UserDetails from "./doner/Pages/AccountDetails";
 
 
 const App = () => {
@@ -30,11 +31,10 @@ const App = () => {
         <Route path="/receivefood" element={<ReceiveFood />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<Signup />} />
+        
       </Routes>
     </>
   );
 };
 
 export default App;
-
-

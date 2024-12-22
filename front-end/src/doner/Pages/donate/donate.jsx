@@ -1,3 +1,8 @@
+
+
+
+
+
 import React, { useState, useEffect, useContext } from "react";
 import AccountDetails from "../AccountDetails"; // Import the AccountDetails component
 import DonateForm from "./DonateForm";
@@ -9,10 +14,27 @@ import { doc, getDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 
 const Donate = () => {
-  const [activeView, setActiveView] = useState("accountDetails"); // Default view is AccountDetails
+  const [activeView, setActiveView] = useState(null); // Start with null to show a loading state initially
   const [showForm, setShowForm] = useState(false); // Track Donate form visibility
   const [accountComplete, setAccountComplete] = useState(false); // Track if details are complete
   const { user, role } = useContext(UserContext);
+
+  // Retrieve the saved view from localStorage if available
+  useEffect(() => {
+    const savedView = localStorage.getItem("activeView");
+    if (savedView) {
+      setActiveView(savedView); // Set the saved view as the initial view
+    } else {
+      setActiveView("accountDetails"); // Default to accountDetails if nothing is stored
+    }
+  }, []);
+
+  // Store the active view in localStorage whenever it changes
+  useEffect(() => {
+    if (activeView) {
+      localStorage.setItem("activeView", activeView);
+    }
+  }, [activeView]);
 
   // Check if account details are complete
   const checkAccountDetails = async () => {
@@ -50,7 +72,7 @@ const Donate = () => {
       const isValid = await checkAccountDetails();
       if (!isValid) return;
     }
-    setActiveView(view);
+    setActiveView(view); // Update active view
   };
 
   // Handle Donate button click
@@ -77,6 +99,11 @@ const Donate = () => {
         return <AccountDetails />;
     }
   };
+
+  // Render a loading state until activeView is determined
+  if (activeView === null) {
+    return <div>Loading...</div>; // Show loading while determining active view
+  }
 
   return (
     <div className="pt-16 h-screen flex flex-col lg:flex-row">
@@ -121,5 +148,3 @@ const Donate = () => {
 };
 
 export default Donate;
-
-

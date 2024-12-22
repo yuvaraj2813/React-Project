@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../UserContext";
 import { db } from "../../../Firebase/firebaseconfig";
@@ -9,13 +12,13 @@ const DonateForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
     foodType: "",
     quantity: "",
-    expireHours: "",
+    expireTime: "", // Expiration time in HH:mm:ss format
     pickupDetails: "self",
     pickupPlace: "",
     district: "",
-    locality: "",  // New field
-    state: "",     // New field
-    phoneNo: "",   // New field
+    locality: "", 
+    state: "",
+    phoneNo: "",
   });
 
   // Preload existing donation details and donor details from the database
@@ -45,7 +48,7 @@ const DonateForm = ({ onClose }) => {
             locality: donorSnap.data().locality || "",
             state: donorSnap.data().state || "",
             district: donorSnap.data().district || "",
-            phoneNo: donorSnap.data().phone || "",  // Make sure phoneNo is set
+            phoneNo: donorSnap.data().phone || "",
           }));
         }
       } catch (error) {
@@ -64,13 +67,24 @@ const DonateForm = ({ onClose }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Parse the expiration time in HH:mm:ss format to get hours, minutes, and seconds
+  const parseExpireTime = (expireTime) => {
+    const timeParts = expireTime.split(":");
+    if (timeParts.length !== 3) return null;
+
+    const [hours, minutes, seconds] = timeParts.map((part) => parseInt(part, 10));
+    if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) return null;
+
+    return { hours, minutes, seconds };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
       !formData.foodType ||
       !formData.quantity ||
-      !formData.expireHours ||
+      !formData.expireTime ||
       !formData.pickupDetails ||
       !formData.pickupPlace ||
       !formData.district ||
@@ -82,6 +96,19 @@ const DonateForm = ({ onClose }) => {
       return;
     }
 
+    // Parse the expiration time
+    const parsedExpireTime = parseExpireTime(formData.expireTime);
+    if (!parsedExpireTime) {
+      Swal.fire("Error", "Invalid expiration time format. Please use HH:mm:ss", "error");
+      return;
+    }
+
+    const { hours, minutes, seconds } = parsedExpireTime;
+    const expirationDate = new Date();
+    expirationDate.setHours(expirationDate.getHours() + hours);
+    expirationDate.setMinutes(expirationDate.getMinutes() + minutes);
+    expirationDate.setSeconds(expirationDate.getSeconds() + seconds);
+
     try {
       // Save donation to Firestore
       await addDoc(collection(db, "donations"), {
@@ -89,14 +116,15 @@ const DonateForm = ({ onClose }) => {
         ...formData,
         accepted: false,
         status: "not done",
-        timestamp: new Date(),
+        timestamp: new Date(), // Set current timestamp
+        expireTimestamp: expirationDate, // Store expiration timestamp
       });
 
       Swal.fire("Success", "Donation posted successfully!", "success");
       setFormData({
         foodType: "",
         quantity: "",
-        expireHours: "",
+        expireTime: "",
         pickupDetails: "self",
         pickupPlace: "",
         district: "",
@@ -138,12 +166,13 @@ const DonateForm = ({ onClose }) => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700">Expiration (Hours)</label>
+        <label className="block text-gray-700">Expiration Time (HH:mm:ss)</label>
         <input
-          type="number"
-          name="expireHours"
-          value={formData.expireHours}
+          type="text"
+          name="expireTime"
+          value={formData.expireTime}
           onChange={handleInputChange}
+          placeholder="e.g., 02:30:00"
           className="w-full px-3 py-2 border"
         />
       </div>
