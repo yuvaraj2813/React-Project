@@ -186,7 +186,7 @@ const DonateForm = ({ onClose }) => {
           className="w-full px-3 py-2 border"
         >
           <option value="self">Self</option>
-          <option value="transported">Transported by Donor</option>
+          <option value="transported">Transported by Food Provider</option>
         </select>
       </div>
 
