@@ -48,15 +48,15 @@ const Received = () => {
           status: "done", // Update the donation status to 'done'
         });
 
-        Swal.fire("Completed!", "Donation marked as done.", "success");
+        Swal.fire("Completed!", "Food Sharing marked as done.", "success");
 
         // Remove the donation from the state after marking it done
         setReceivedDonations((prevDonations) =>
           prevDonations.filter((donation) => donation.id !== donationId)
         );
       } catch (error) {
-        console.error("Error updating donation status:", error);
-        Swal.fire("Error", "Failed to update donation status. Try again.", "error");
+        console.error("Error updating Food status:", error);
+        Swal.fire("Error", "Failed to update Food status. Try again.", "error");
       }
     }
   };
