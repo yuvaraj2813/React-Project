@@ -120,7 +120,7 @@ const DonateForm = ({ onClose }) => {
         expireTimestamp: expirationDate, // Store expiration timestamp
       });
 
-      Swal.fire("Success", "Donation posted successfully!", "success");
+      Swal.fire("Success", "Food Shared successfully!", "success");
       setFormData({
         foodType: "",
         quantity: "",
@@ -134,8 +134,8 @@ const DonateForm = ({ onClose }) => {
       });
       onClose(); // Close the form after submission
     } catch (error) {
-      console.error("Error adding donation:", error);
-      Swal.fire("Error", "Failed to post donation. Try again.", "error");
+      console.error("Error adding sharing food:", error);
+      Swal.fire("Error", "Failed to share. Try again.", "error");
     }
   };
 
