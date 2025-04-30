@@ -118,7 +118,7 @@ useEffect(() => {
   const handleAcceptDonation = async (donationId) => {
     const result = await Swal.fire({
       title: "Confirm Donation Acceptance",
-      text: "Do you want to accept this donation?",
+      text: "Do you want to accept this Food?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Yes, accept it!",
@@ -134,7 +134,7 @@ useEffect(() => {
           receiverId: user.uid,
         });
 
-        Swal.fire("Accepted!", "You have accepted the donation.", "success");
+        Swal.fire("Accepted!", "You have accepted the Food.", "success");
 
         // Optionally remove the donation from the state after acceptance
         setDonations((prevDonations) =>
@@ -152,7 +152,7 @@ useEffect(() => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Search Available Donations</h2>
+      <h2 className="text-2xl font-bold mb-4">Search Available Foods</h2>
 
       {/* Search Bar */}
       <input
@@ -165,7 +165,7 @@ useEffect(() => {
 
       {/* Donations List */}
       {filteredDonations.length === 0 ? (
-        <p>No donations available matching the criteria.</p>
+        <p>No Foods available matching the criteria.</p>
       ) : (
         <ul>
           {filteredDonations.map((donation) => {
@@ -195,7 +195,7 @@ useEffect(() => {
                   onClick={() => handleAcceptDonation(donation.id)}
                   className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 mt-2"
                 >
-                  Accept Donation
+                  Accept Food
                 </button>
               </li>
             );
