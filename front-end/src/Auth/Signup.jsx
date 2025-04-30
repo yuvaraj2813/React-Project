@@ -102,7 +102,7 @@ const Signup = () => {
                   checked={role === "Food Provider"}
                   onChange={changeRole}
                 />
-                Donor
+                Food Provider
               </label>
               <label className="flex items-center gap-2 font-semibold">
                 <input
