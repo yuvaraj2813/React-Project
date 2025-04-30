@@ -340,7 +340,7 @@ const NavBar = () => {
           </Link>
           {role === "donor" && (
             <Link to="/donate" className="text-gray-600 hover:text-blue-600">
-              Donate
+              Share food
             </Link>
           )}
           {role === "receiver" && (
@@ -414,7 +414,7 @@ const NavBar = () => {
                 className="block text-gray-600 hover:text-blue-600 text-lg"
                 onClick={toggleMenu}
               >
-                Donate
+                Share Food
               </Link>
             )}
             {role === "receiver" && (
