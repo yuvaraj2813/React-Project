@@ -156,7 +156,7 @@ const CurrentDonations = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold">Current Donations</h1>
+      <h1 className="text-3xl font-bold">Available Sharings</h1>
       <p className="text-gray-500 mb-4">
         Here are your active donations. Donations will appear here if they are either waiting for a receiver or are
         accepted but not completed yet.
