@@ -158,7 +158,7 @@ const CurrentDonations = () => {
     <div>
       <h1 className="text-3xl font-bold">Available Sharings</h1>
       <p className="text-gray-500 mb-4">
-        Here are your active donations. Donations will appear here if they are either waiting for a receiver or are
+        Here are your active Food Sharings. Sharing Foods will appear here if they are either waiting for a receiver or are
         accepted but not completed yet.
       </p>
       {donations.length === 0 ? (
