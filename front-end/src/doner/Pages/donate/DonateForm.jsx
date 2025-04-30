@@ -141,7 +141,7 @@ const DonateForm = ({ onClose }) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8">
-      <h2 className="text-xl font-bold mb-4">New Donation</h2>
+      <h2 className="text-xl font-bold mb-4">New Sharing</h2>
       
       <div className="mb-4">
         <label className="block text-gray-700">Food Type</label>
