@@ -120,7 +120,7 @@ const Donate = () => {
           onClick={() => handleNavigation("previousDonations")}
           className="px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-md"
         >
-          Previous Donations
+          Shared Foods
         </button>
         <hr className="my-2" />
         <div className="flex flex-col">
@@ -128,13 +128,13 @@ const Donate = () => {
             onClick={() => handleNavigation("currentDonations")}
             className="px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-md"
           >
-            Current Donations
+            Available sharings
           </button>
           <button
             onClick={handleDonateClick}
             className="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
           >
-            Donate
+            Share Food
           </button>
         </div>
       </div>
