@@ -98,8 +98,8 @@ const Signup = () => {
               <label className="flex items-center gap-2 font-semibold">
                 <input
                   type="radio"
-                  value="donor"
-                  checked={role === "donor"}
+                  value="Food Provider"
+                  checked={role === "Food Provider"}
                   onChange={changeRole}
                 />
                 Donor
