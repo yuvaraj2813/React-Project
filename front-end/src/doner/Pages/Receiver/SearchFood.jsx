@@ -108,16 +108,16 @@ useEffect(() => {
   const deleteDonationFromFirestore = async (donationId) => {
     try {
       await deleteDoc(doc(db, "donations", donationId));
-      console.log(`Donation ${donationId} deleted from Firestore.`);
+      console.log(`Food ${donationId} deleted from Firestore.`);
     } catch (error) {
-      console.error("Error deleting donation:", error);
+      console.error("Error deleting Food:", error);
     }
   };
 
   // Handle donation acceptance
   const handleAcceptDonation = async (donationId) => {
     const result = await Swal.fire({
-      title: "Confirm Donation Acceptance",
+      title: "Confirm Food Acceptance",
       text: "Do you want to accept this Food?",
       icon: "question",
       showCancelButton: true,
@@ -145,7 +145,7 @@ useEffect(() => {
         );
       } catch (error) {
         console.error("Error accepting donation:", error);
-        Swal.fire("Error", "Failed to accept donation. Try again.", "error");
+        Swal.fire("Error", "Failed to accept dFood. Try again.", "error");
       }
     }
   };
